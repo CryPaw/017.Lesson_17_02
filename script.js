@@ -57,16 +57,16 @@ function doMath(x, operator, y) {
     }
 }
 
-  var x = Number(prompt('Введіть x'));
+  var x = Number(prompt('Введите x'));
   if (x === 0 || x === '') 
     {alert("Обидно, извиняйся!");}
     else
     {
-    var y = Number(prompt('Введіть y'));
+    var y = Number(prompt('Введите y'));
     if (y === 0 || y === '') 
     {alert("Обидно, извиняйся!");}
     else{
-    var operator = prompt('Введіть знак');
+    var operator = prompt('Введите оператор');
     if (operator === null || operator === '') 
     {alert("Обидно, извиняйся!");}
     else {alert(doMath(x, operator, y));}

@@ -47,16 +47,16 @@ function doMath(x, operator, y) {
 }
 
   let x = Number(prompt('Введите x'));
-  if (x === 0 || x === '') 
+  if (x === null || isNaN(x)) 
     {alert("Ошибка ввода");}
     else
     {
     let y = Number(prompt('Введите y'));
-    if (y === 0 || y === '') 
+    if (y === null || isNaN(y)) 
     {alert("Ошибка ввода");}
     else{
     let operator = prompt('Введите оператор');
-    if (operator === null || operator === '') 
+    if (operator === null || operator === '' || isNaN(operator)) 
     {alert("Ошибка ввода");}
     else {alert(doMath(x, operator, y));}
     }
@@ -73,24 +73,20 @@ function doMath(x, operator, y) {
 function arrAdd() {
     let arr = [];
     let amountOfArrays = Number(prompt("Введите количество массивов в первом массиве"));
-    if (Number.isInteger(amountOfArrays) === false) 
-    {alert("Ошибка ввода")}
-    else if (amountOfArrays === 0) 
-    {alert("Ошибка ввода"); return}
-    else if (amountOfArrays === '')
-    {alert("Ошибка ввода"); return}
+    if (!Number.isInteger(amountOfArrays) || !amountOfArrays) {
+        alert("Ошибка ввода");
+        return;
+      }
     else{
     for(let i = 0; i < amountOfArrays; i++) {
         arr.push([]);
 
         let amountOfArrays2 = Number(prompt("Введите количество елементов" + (` ${ i + 1 } массива`)));
 
-        if (Number.isInteger(amountOfArrays2) === false) 
-        {return (alert("Ошибка ввода"))}
-        else if (amountOfArrays2 === 0) 
-        {alert("Ошибка ввода"); return}
-        else if (amountOfArrays2 === '')
-        {alert("Ошибка ввода"); return}
+        if (!Number.isInteger(amountOfArrays2) || !amountOfArrays2) {
+            alert("Ошибка ввода");
+            return;
+          }
          else{
         for(let j = 0; j < amountOfArrays2; j++) {
             let elementsOfArray = prompt("Введите элемент" + (` ${ j + 1 }`));

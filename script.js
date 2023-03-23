@@ -2,19 +2,19 @@
 //середнє арифметичне лише числових елементів даного масиву.
 
 function averageVal(array) {
-    var sum = 0;
-    for(var i = 0; i < array.length; i++) {
+    let sum = 0;
+    for(let i = 0; i < array.length; i++) {
         sum += array[i];
     }
     return sum / array.length;
  }
 
-var result = [];
-var array = [1, "2", "do", "win", "lose", 3];
+let result = [];
+let array = [1, "2", "do", "win", "lose", 3];
 
 array.forEach(function(item) {
-  if (/^(\-|\+)?([0-9]+|Infinity)$/.test(item))
-    result.push(Number(item));
+  if (!isNaN(parseFloat(item)) && isFinite(item) && typeof item === "number")
+  result.push(item)
 });
 console.log(result);
 console.log(averageVal(result));
@@ -27,54 +27,41 @@ console.log(averageVal(result));
 // Обидва числа і знак виходять від користувача.
 
 function doMath(x, operator, y) {
-    
-    var g = x + y;
-    var h = x - y;
-    var i = x / y;
-    var j = x * y;
-    var k = x ** y;
-    var l = x % y;
-    var a = x + ' + ' + y + ' = ' + g;
-    var b = x + ' - ' + y + ' = ' + h;
-    var c = x + ' / ' + y + ' = ' + i;
-    var d = x + ' * ' + y + ' = ' + j;
-    var e = x + ' ** ' + y + ' = ' + k;
-    var f = x + ' % ' + y + ' = ' + l;
 
     switch (operator) {
         case '+':
-            return (a);
+            return (`${x} + ${y} = ${x + y}`);
         case '-':
-            return (b);
+            return (`${x} - ${y} = ${x - y}`);
         case '/':
-            return (c);
+            return (`${x} / ${y} = ${x / y}`);
         case '*':
-            return (d);
+            return (`${x} * ${y} = ${x * y}`);
         case '^':
-            return (e);
+            return (`${x} ** ${y} = ${x ** y}`);
         case '%':
-            return (f);
+            return (`${x} % ${y} = ${x % y}`);
+        default:
+            return (`Результат не возможно вычислить`)
     }
 }
 
-  var x = Number(prompt('Введите x'));
+  let x = Number(prompt('Введите x'));
   if (x === 0 || x === '') 
-    {alert("Обидно, извиняйся!");}
+    {alert("Ошибка ввода");}
     else
     {
-    var y = Number(prompt('Введите y'));
+    let y = Number(prompt('Введите y'));
     if (y === 0 || y === '') 
-    {alert("Обидно, извиняйся!");}
+    {alert("Ошибка ввода");}
     else{
-    var operator = prompt('Введите оператор');
+    let operator = prompt('Введите оператор');
     if (operator === null || operator === '') 
-    {alert("Обидно, извиняйся!");}
+    {alert("Ошибка ввода");}
     else {alert(doMath(x, operator, y));}
     }
-}
-    
-  
-    
+}   
+   
 
 
 
@@ -86,34 +73,36 @@ function doMath(x, operator, y) {
 function arrAdd() {
     let arr = [];
     let amountOfArrays = Number(prompt("Введите количество массивов в первом массиве"));
-
-    if (amountOfArrays === 0) 
-    {alert("Обидно, извиняйся!"); return}
+    if (Number.isInteger(amountOfArrays) === false) 
+    {alert("Ошибка ввода")}
+    else if (amountOfArrays === 0) 
+    {alert("Ошибка ввода"); return}
     else if (amountOfArrays === '')
-    {alert("Обидно, извиняйся!"); return}
+    {alert("Ошибка ввода"); return}
     else{
     for(let i = 0; i < amountOfArrays; i++) {
         arr.push([]);
 
         let amountOfArrays2 = Number(prompt("Введите количество елементов" + (` ${ i + 1 } массива`)));
 
-        if (amountOfArrays2 === 0) 
-        {alert("Обидно, извиняйся!"); return}
+        if (Number.isInteger(amountOfArrays2) === false) 
+        {return (alert("Ошибка ввода"))}
+        else if (amountOfArrays2 === 0) 
+        {alert("Ошибка ввода"); return}
         else if (amountOfArrays2 === '')
-        {alert("Обидно, извиняйся!"); return}
+        {alert("Ошибка ввода"); return}
          else{
         for(let j = 0; j < amountOfArrays2; j++) {
             let elementsOfArray = prompt("Введите элемент" + (` ${ j + 1 }`));
             arr[i].push([elementsOfArray]);
+                }
             }
         }
     }
-}
     console.log(arr);
 }
 
 let functionResult = arrAdd();
-
 
 
 
@@ -123,7 +112,7 @@ let functionResult = arrAdd();
 // Вихідний рядок та символи для видалення задає користувач.
 
 function replace_string(string, pattern){
-    var st_pt = pattern.join('');
+    let st_pt = pattern.join('');
 
     return string.replace(new RegExp(`[${st_pt}]`, 'gi'), '')
    }
